@@ -1,0 +1,10 @@
+# Files to ignore when publishing to pub.dev
+.dart_tool/
+.idea/
+.vscode/
+*.iml
+.DS_Store
+.packages
+pubspec.lock
+build/
+

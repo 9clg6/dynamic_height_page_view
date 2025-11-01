@@ -1,27 +1,26 @@
 # Example App
 
-Cette application démontre l'utilisation du package `dynamic_height_page_view`.
+This application demonstrates the usage of the `dynamic_height_page_view` package.
 
-## Fonctionnalités démontrées
+## Features demonstrated
 
-- PageView avec des pages de hauteurs différentes
-- Animation automatique lors du changement de page
-- Gestion des événements de tap
-- Gestion des changements de taille
-- Utilisation avec des objets personnalisés
+- PageView with pages of different heights
+- Automatic animation when changing pages
+- Tap event handling
+- Size change handling
+- Usage with custom objects
 
-## Exécution
+## Running
 
 ```bash
 cd example
 flutter run
 ```
 
-## Code principal
+## Main code
 
-Le code principal se trouve dans `lib/main.dart` et montre comment :
-1. Créer des données personnalisées (`PageData`)
-2. Utiliser `DynamicHeightPageView` avec ces données
-3. Créer des widgets personnalisés pour chaque page
-4. Gérer les callbacks `onChildTap` et `onSizeChange`
-
+The main code is located in `lib/main.dart` and shows how to:
+1. Create custom data (`PageData`)
+2. Use `DynamicHeightPageView` with this data
+3. Create custom widgets for each page
+4. Handle `onChildTap` and `onSizeChange` callbacks

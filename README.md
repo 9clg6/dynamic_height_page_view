@@ -2,33 +2,33 @@
 
 [![pub package](https://img.shields.io/pub/v/dynamic_height_page_view.svg)](https://pub.dev/packages/dynamic_height_page_view)
 
-Un widget Flutter qui fournit un `PageView` avec adaptation automatique de la hauteur en fonction du contenu de la page actuelle.
+A Flutter widget that provides a `PageView` with automatic height adaptation based on the current page content.
 
-## Fonctionnalités
+## Features
 
-- ✅ Adaptation automatique de la hauteur selon le contenu de chaque page
-- ✅ Animation fluide lors du changement de hauteur
-- ✅ Support du défilement tactile, souris et stylet
-- ✅ Type générique pour tout type de données
-- ✅ Callbacks personnalisables pour les événements de changement de taille et de tap
-- ✅ Configuration du `viewportFraction` (par défaut 0.9)
+- ✅ Automatic height adaptation based on each page's content
+- ✅ Smooth animation during height changes
+- ✅ Support for touch, mouse, and stylus scrolling
+- ✅ Generic type support for any data type
+- ✅ Customizable callbacks for size change and tap events
+- ✅ Configurable `viewportFraction` (default 0.9)
 
 ## Installation
 
-Ajoutez cette dépendance à votre fichier `pubspec.yaml`:
+Add this dependency to your `pubspec.yaml` file:
 
 ```yaml
 dependencies:
   dynamic_height_page_view: ^0.1.0
 ```
 
-Puis exécutez:
+Then run:
 
 ```bash
 flutter pub get
 ```
 
-## Utilisation de base
+## Basic Usage
 
 ```dart
 import 'package:dynamic_height_page_view/dynamic_height_page_view.dart';
@@ -43,21 +43,21 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Dynamic Height PageView Demo'),
       ),
-      body: DynamicHeightPageView<String>(
-        children: const [
-          'Page courte',
-          'Page moyenne avec plus de contenu',
-          'Page très longue avec beaucoup de contenu qui nécessite plus d\'espace',
-        ],
-        childPattern: (text) => Container(
-          padding: const EdgeInsets.all(20),
+      body: DynamicHeightPageView<int>(
+        children: const <int>[1, 2, 3, 4, 5],
+        childPattern: (int item) => Container(
+          height: item.toDouble() * item * 50,
           decoration: BoxDecoration(
-            color: Colors.blue.shade100,
-            borderRadius: BorderRadius.circular(12),
+            color: Colors.blue.withValues(alpha: 0.3),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(color: Colors.blue, width: 3),
           ),
-          child: Text(
-            text,
-            style: const TextStyle(fontSize: 18),
+          child: Center(
+            child: Text(
+              'Page $item\nHeight: ${item * item * 50}px',
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
           ),
         ),
       ),
@@ -66,9 +66,9 @@ class MyHomePage extends StatelessWidget {
 }
 ```
 
-## Utilisation avancée
+## Advanced Usage
 
-### Avec des objets personnalisés
+### With custom objects
 
 ```dart
 class Product {
@@ -83,7 +83,7 @@ class Product {
   });
 }
 
-// Dans votre widget
+// In your widget
 DynamicHeightPageView<Product>(
   children: products,
   childPattern: (product) => ProductCard(product: product),
@@ -96,7 +96,7 @@ DynamicHeightPageView<Product>(
 )
 ```
 
-### Avec un contenu dynamique complexe
+### With complex dynamic content
 
 ```dart
 DynamicHeightPageView<Widget>(
@@ -104,13 +104,13 @@ DynamicHeightPageView<Widget>(
     Column(
       children: [
         Image.network('https://example.com/image1.jpg'),
-        const Text('Description courte'),
+        const Text('Short description'),
       ],
     ),
     Column(
       children: [
         Image.network('https://example.com/image2.jpg'),
-        const Text('Description beaucoup plus longue avec plusieurs lignes...'),
+        const Text('Much longer description with multiple lines...'),
         ElevatedButton(
           onPressed: () {},
           child: const Text('Action'),
@@ -122,38 +122,38 @@ DynamicHeightPageView<Widget>(
 )
 ```
 
-## Paramètres
+## Parameters
 
-| Paramètre | Type | Description | Requis |
-|-----------|------|-------------|--------|
-| `children` | `List<T>` | Liste des éléments à afficher | ✅ Oui |
-| `childPattern` | `Widget Function(T)` | Fonction de conversion d'un élément en Widget | ✅ Oui |
-| `onSizeChange` | `VoidCallback?` | Callback appelé quand la taille change | Non |
-| `onChildTap` | `VoidCallback?` | Callback appelé quand un enfant est tapé | Non |
+| Parameter | Type | Description | Required |
+|-----------|------|-------------|----------|
+| `children` | `List<T>` | List of items to display | ✅ Yes |
+| `childPattern` | `Widget Function(T)` | Function to convert an item to a Widget | ✅ Yes |
+| `onSizeChange` | `VoidCallback?` | Callback invoked when size changes | No |
+| `onChildTap` | `VoidCallback?` | Callback invoked when a child is tapped | No |
 
-## Comment ça fonctionne
+## How it works
 
-Le widget utilise:
-1. Un `PageController` avec `viewportFraction: 0.9` pour un effet de peek
-2. Un `SizeReportingWidget` personnalisé qui mesure la hauteur de chaque page
-3. Un `TweenAnimationBuilder` pour animer les transitions de hauteur
-4. Un `OverflowBox` pour permettre aux enfants de définir leur propre hauteur
+The widget uses:
+1. A `PageController` with `viewportFraction: 0.9` for a peek effect
+2. A custom `SizeReportingWidget` that measures each page's height
+3. A `TweenAnimationBuilder` to animate height transitions
+4. An `OverflowBox` to allow children to define their own height
 
-## Contribution
+## Contributing
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-- 🐛 Signaler des bugs
-- 💡 Proposer de nouvelles fonctionnalités
-- 🔧 Soumettre des pull requests
+Contributions are welcome! Feel free to:
+- 🐛 Report bugs
+- 💡 Propose new features
+- 🔧 Submit pull requests
 
 ## License
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-## Auteur
+## Author
 
-Créé avec ❤️ pour la communauté Flutter
+Created with ❤️ for the Flutter community
 
 ## Changelog
 
-Voir [CHANGELOG.md](CHANGELOG.md) pour l'historique des versions.
+See [CHANGELOG.md](CHANGELOG.md) for version history.

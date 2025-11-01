@@ -63,7 +63,8 @@ class _DynamicHeightPageViewState<T> extends State<DynamicHeightPageView<T>> {
   late List<double> _heights;
   late int _currentPage;
 
-  double get _currentHeight => _heights[_currentPage];
+  double get _currentHeight =>
+      _heights.isEmpty ? 0 : _heights[_currentPage];
 
   @override
   void initState() {
@@ -85,6 +86,11 @@ class _DynamicHeightPageViewState<T> extends State<DynamicHeightPageView<T>> {
 
   @override
   Widget build(BuildContext context) {
+    // Handle empty children case
+    if (widget.children.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return SafeArea(
       top: false,
       child: TweenAnimationBuilder<double>(
