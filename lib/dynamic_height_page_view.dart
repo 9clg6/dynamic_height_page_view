@@ -63,8 +63,7 @@ class _DynamicHeightPageViewState<T> extends State<DynamicHeightPageView<T>> {
   late List<double> _heights;
   late int _currentPage;
 
-  double get _currentHeight =>
-      _heights.isEmpty ? 0 : _heights[_currentPage];
+  double get _currentHeight => _heights.isEmpty ? 0 : _heights[_currentPage];
 
   @override
   void initState() {

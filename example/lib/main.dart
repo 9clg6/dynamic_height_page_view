@@ -57,10 +57,7 @@ class MyHomePage extends StatelessWidget {
                   decoration: BoxDecoration(
                     color: colors[item - 1].withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: colors[item - 1],
-                      width: 3,
-                    ),
+                    border: Border.all(color: colors[item - 1], width: 3),
                   ),
                   child: Center(
                     child: Column(
